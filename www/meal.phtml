@@ -1,33 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>3WA Restaurant</title>
+<?php require'header.php'; ?>
 
-    <link rel="stylesheet" href="/resto/application/www/css/normalize-3.0.3.min.css">
-    <link rel="stylesheet" href="/resto/application/www/css/font-awesome-4.3.0.min.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps|Karla">
 
-    <!-- Feuilles de styles de l'application -->
-    <link rel="stylesheet" href="/resto/application/www/css/3wa-resto.css">
-    <link rel="stylesheet" href="/resto/application/www/css/ui-button.css">
-    <link rel="stylesheet" href="/resto/application/www/css/ui-form.css">
-    <link rel="stylesheet" href="/resto/application/www/css/ui-table.css">
 
-    <!-- Librairie jQuery -->
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<nav class="user-interface">
+    <ul class="link-list">
+        <li>
+            <a class="button button-primary" href="/resto/index.php/user">Créer un compte</a>
+        </li>
+        <li class="layout-right">
+            <a class="button button-primary" href="/resto/index.php/user/login">Connexion</a>
+        </li>
+    </ul>
+</nav>
 
-    <!-- JavaScript de l'application -->
-    <script src="/resto/application/www/js/utilities.js"></script>
-    <script src="/resto/application/www/js/classes/FormValidator.class.js"></script>
-</head>
-<body>
-<header>
-    <h1>
-        <a href="/resto/index.php">
-            <img src="/resto/application/www/images/logo.gif" height="63" width="57" alt="3WA Restaurant">Restaurant - Made In America !
-        </a>
-    </h1>
-</header>
+
+<main>
+
+    <h2>Ajout d'un produit alimentaire au catalogue</h2>
+    <fieldset>
+        <legend>Caractéristiques</legend>
+
+        <label for="name">Name</label>
+        <input type="name"  name="name" id="name" >
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+
+        
+
+
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Approvisionnement</legend>
+
+
+    </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php require 'footer.php'; ?>
