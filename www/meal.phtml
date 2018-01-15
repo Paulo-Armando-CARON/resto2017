@@ -15,18 +15,26 @@
 
 
 <main>
+    <form class="generic-form" method="POST" action="meal.php" enctype="multipart/form-data">
 
     <h2>Ajout d'un produit alimentaire au catalogue</h2>
     <fieldset>
-        <legend>Caractéristiques</legend>
+        <legend><i class="fa fa-check"></i>Caractéristiques</legend>
+        <ul>
+            <li>
+                <label for="title_product">Name</label>
+                <input type="text"  name="title_product" id="title_product" >
+            </li>
+            <li>
+                <label for="description">Description</label>
+                <textarea id="description" name="description"></textarea>
+            <li>
+                <label for="photo">Photo</label>
+                <input id="photo" name="photo" type="file">
+            </li>
 
-        <label for="name">Name</label>
-        <input type="name"  name="name" id="name" >
-
-        <label for="description">Description</label>
-        <textarea id="description" name="description"></textarea>
-
-        
+            <li><i class="fa fa-warning"></i> Merci de renommer le fichier de la photo avec le nom de l'aliment <strong>avant</strong> de l'envoyer</li>
+        </ul>
 
 
     </fieldset>
@@ -34,27 +42,37 @@
 
     <fieldset>
         <legend>Approvisionnement</legend>
+        <ul>
+            <li>
+                <label for="quantity">Stock initial:</label>
+                <input type="text" name="quantity" id="quantity" class="quantity" maxlength="3" data-name="Stock initial" data-type="positive-integer" data-required >
+            </li>
+            <li>
+                <label for="price_ht">Prix d'achat:</label>
+                <input type="text" name="price_ht" id="price_ht" class="money" maxlength="5" data-name="Prix d'achat" data-type="positive-integer" data-required >
+                <label for="buyPrice" class="no-width" >€</label>
+            </li>
+            <li>
+                <label for="price_ttc">Prix de vente:</label>
+                <input type="text" name="price_ttc" id="price_ttc" class="money" maxlength="5" data-name="Prix de vente" data-type="positive-integer" data-required >
+                <label for="salePrice" class="no-width" >€</label>
+            </li>
+        </ul>
 
 
     </fieldset>
 
 
+        <ul>
+            <li>
+                <input class="button button-primary" type="submit" value="Ajouter">
+                <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
+            </li>
+        </ul>
+    </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</main>
+    </main>
 
 
 

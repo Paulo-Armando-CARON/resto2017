@@ -15,20 +15,30 @@
     </nav>
 
     <main>
+
+
+
         <!-- Affichage du template lié à la vue -->
         <table class="generic-table meal-list">
+            <?php
+            while ($articles=$req->fetch())
+            {
+                ?>
             <caption>Carte du restaurant</caption>
             <tbody>
             <tr>
                 <td><img src=""> </td>
                 <td>
-                    <strong></strong>
-                    <p></p>
+                    <strong><?= $articles['title_product']?> </strong>
+                    <p><?= $articles['description']?></p>
                 </td>
-                <td class="number"><strong> ?prix</strong> €</td>
+                <td class="number"><strong> <?= $articles['price_ttc']?></strong> €</td>
 
             </tr>
             </tbody>
+            <?php
+            }
+            ?>
         </table>
     </main>
 

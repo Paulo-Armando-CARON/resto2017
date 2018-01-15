@@ -2,7 +2,7 @@
 	//	Connexion à la base de données
 	$pdo = new PDO
 	(
-		'mysql:host=localhost;dbname=restaurant;charset=UTF8',
+		'mysql:host=localhost;dbname=resto2017;charset=UTF8',
 		'root',
 		'troiswa',
 	    [
