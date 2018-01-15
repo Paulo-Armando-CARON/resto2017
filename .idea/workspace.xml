@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="258cd4ec-9290-4851-9beb-d828a1dfb4aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/upload.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/LayoutView.phtml" afterPath="$PROJECT_DIR$/www/LayoutView.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/footer.php" afterPath="$PROJECT_DIR$/www/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/header.php" afterPath="$PROJECT_DIR$/www/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/inc/sql.php" afterPath="$PROJECT_DIR$/www/inc/sql.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/meal.php" afterPath="$PROJECT_DIR$/www/meal.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/meal.phtml" afterPath="$PROJECT_DIR$/www/meal.phtml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LayoutView.phtml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LayoutView.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/LayoutView.phtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="56">
               <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="36" column="29" lean-forward="true" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -140,6 +144,7 @@
         <option value="$PROJECT_DIR$/www/meal.php" />
         <option value="$PROJECT_DIR$/www/index.php" />
         <option value="$PROJECT_DIR$/www/LayoutView.phtml" />
+        <option value="$PROJECT_DIR$/www/upload.php" />
       </list>
     </option>
   </component>
@@ -224,12 +229,12 @@
       <option name="presentableId" value="Default" />
       <updated>1515767277375</updated>
       <workItem from="1515767278992" duration="2995000" />
-      <workItem from="1516008649598" duration="8462000" />
+      <workItem from="1516008649598" duration="9129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11457000" />
+    <option name="totallyTimeSpent" value="12124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="150" y="52" width="869" height="970" extended-state="0" />
@@ -378,6 +383,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
           <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="36" column="29" lean-forward="true" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
           <folding />
         </state>
       </provider>
