@@ -2,60 +2,56 @@
 
  require'header.php'; ?>
 
-<nav class="user-interface">
-    <ul class="link-list">
-        <li>
-            <a class="button button-primary" href="/resto/index.php/user">Créer un compte</a>
-        </li>
-        <li class="layout-right">
-            <a class="button button-primary" href="/resto/index.php/user/login">Connexion</a>
-        </li>
-    </ul>
-</nav>
+
 
 
 <main>
 
     <h2><i class="fa fa-user"></i> Création d'un compte client</h2>
 
-    <form class="generic-form" method="POST" action="/resto/index.php/user">
+    <form class="generic-form" method="POST">
 
-        <fieldset>
+
+
+                        <fieldset>
             <legend><i class="fa fa-book"></i> Identité et coordonnées</legend>
                 <ul>
+
+
+
                     <li>
-                    <label for="lastName">Nom :</label>
-                    <input type="text" id="lastName" name="?" data-required value="">
+                        <label for="lastName">Nom :</label>
+                        <input type="text" id="lastName" name="lastName" data-required value="<?= $_POST['lastName'] ?? '' ?>">
                     </li>
 
                     <li>
-                    <label for="name">Prénom:</label>
-                    <input type="text" id="name" name="?" data-required value="">
+                        <label for="firstName">Prénom:</label>
+                        <input type="text" id="firstName" name="firstName" data-required value="<?= $_POST['firstName'] ?? '' ?>" >
                     </li>
 
                     <li>
                         <label for="birthDate">Date de naissance :</label>
-                        <input type="date" id="birthDate" name="?" max="2017/05/05" min="2000/04/03">
+                        <input type="date" id="birthDate" name="birthdate" max="2017/05/05" min="2000/04/03" value="<?= $_POST['birthdate']?? '' ?>">
                     </li>
 
                     <li>
-                    <label class="textarea" for="adress">Adresse :</label>
-                    <textarea rows="3" id="adress" name="?"></textarea>
+                        <label class="textarea" for="adress">Adresse :</label>
+                        <textarea rows="3" id="adress" name="adress" value="<?= $_POST['adress']?? '' ?>" ></textarea>
                     </li>
 
                     <li>
-                    <label for="city">Ville :</label>
-                    <input type="text" id="city" name="?">
+                        <label for="city">Ville :</label>
+                        <input type="text" id="city" name="city" value="<?= $_POST['city']?? '' ?>">
                     </li>
 
                     <li>
-                    <label for="CP">Code Postal :</label>
-                    <input class="zip-code" type="text" id="city" name="?" maxlength="5" data-type="number" value=""  >
+                        <label for="CP">Code Postal :</label>
+                        <input class="zip-code" type="text" id="city" name="CP" maxlength="5" data-type="number" value="<?= $_POST['CP']?? '' ?>"  >
                     </li>
 
                     <li>
-                    <label for="tel">Téléphone :</label>
-                    <input type="tel" id="tel" name="?" maxlength="10"  data-type="number" value="" >
+                        <label for="tel">Téléphone :</label>
+                        <input type="tel" id="tel" name="tel" maxlength="10"  data-type="number" value="<?= $_POST['tel']?? '' ?>" >
                     </li>
                 </ul>
 
@@ -65,13 +61,16 @@
         <fieldset>
             <legend><i class="fa fa-lock"></i> Informations d'authentification</legend>
 
-
-            <label for="mail">Email :</label>
-            <input id="mail" name="?" type="mail" data-required value="" >
-
-            <label for="userPassword">Mot de passe :</label>
-            <input id="userPassword" name="?" type="password" data-required>
-
+                <ul>
+                    <li>
+                        <label for="mail">Email :</label>
+                        <input id="mail" name="mail" type="mail" data-required value="<?= $_POST['mail']?? '' ?>" >
+                    </li>
+                    <li>
+                        <label for="userPassword">Mot de passe :</label>
+                        <input id="userPassword" name="password" type="password" data-required value="<?= $_POST['password']?? '' ?>">
+                    </li>
+                </ul>
 
         </fieldset>
 
@@ -79,7 +78,8 @@
             <ul>
 
                 <li>
-                    <input class="button button-primary" type="submit" value="Créer le compte">
+
+                    <input  class="button button-primary" type="submit" value="Créer le compte">
                     <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
                 </li>
             </ul>
@@ -88,7 +88,18 @@
     </form>
 
 
+    <?php
+    include_once"inc/sql.php";
+    include_once 'inc/functions.php';
 
+    $b = trimDatasPost($_POST);
+    $editUser = $pdo->prepare('INSERT INTO `table_user` (`lastName`, `firstName`, `birthdate`, `adress`, `city`, `CP`, `tel`, `mail`, `password`) VALUES(?,?,?,?,?,?,?,?, SHA1(?))');
+
+    $b_result = $editUser->execute(array_values($b));
+
+    header ('location:index.php');
+
+    ?>
 
 
 

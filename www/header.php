@@ -33,3 +33,14 @@
         </a>
     </h1>
 </header>
+
+<nav class="user-interface">
+    <ul class="link-list">
+        <li>
+            <a class="button button-primary" href="/resto/index.php/user">Créer un compte</a>
+        </li>
+        <li class="layout-right">
+            <a class="button button-primary" href="/resto/index.php/user/login">Connexion</a>
+        </li>
+    </ul>
+</nav>
