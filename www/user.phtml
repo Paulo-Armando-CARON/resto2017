@@ -17,14 +17,72 @@
 <main>
 
     <h2><i class="fa fa-user"></i> Création d'un compte client</h2>
-    <form>
+
+    <form class="generic-form" method="POST" action="/resto/index.php/user">
+
+        <fieldset>
+            <legend><i class="fa fa-book"></i> Identité et coordonnées</legend>
+                <ul>
+                    <li>
+                    <label for="lastName">Nom :</label>
+                    <input type="text" id="lastName" name="?" data-required value="">
+                    </li>
+
+                    <li>
+                    <label for="name">Prénom:</label>
+                    <input type="text" id="name" name="?" data-required value="">
+                    </li>
+
+                    <li>
+                        <label for="birthDate">Date de naissance :</label>
+                        <input type="date" id="birthDate" name="?" max="2017/05/05" min="2000/04/03">
+                    </li>
+
+                    <li>
+                    <label class="textarea" for="adress">Adresse :</label>
+                    <textarea rows="3" id="adress" name="?"></textarea>
+                    </li>
+
+                    <li>
+                    <label for="city">Ville :</label>
+                    <input type="text" id="city" name="?">
+                    </li>
+
+                    <li>
+                    <label for="CP">Code Postal :</label>
+                    <input class="zip-code" type="text" id="city" name="?" maxlength="5" data-type="number" value=""  >
+                    </li>
+
+                    <li>
+                    <label for="tel">Téléphone :</label>
+                    <input type="tel" id="tel" name="?" maxlength="10"  data-type="number" value="" >
+                    </li>
+                </ul>
 
 
+        </fieldset>
+
+        <fieldset>
+            <legend><i class="fa fa-lock"></i> Informations d'authentification</legend>
 
 
+            <label for="mail">Email :</label>
+            <input id="mail" name="?" type="mail" data-required value="" >
+
+            <label for="userPassword">Mot de passe :</label>
+            <input id="userPassword" name="?" type="password" data-required>
 
 
+        </fieldset>
 
+
+            <ul>
+
+                <li>
+                    <input class="button button-primary" type="submit" value="Créer le compte">
+                    <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
+                </li>
+            </ul>
 
 
     </form>
@@ -37,3 +95,5 @@
 
 
 </main>
+
+<?php require 'footer.php'; ?>
