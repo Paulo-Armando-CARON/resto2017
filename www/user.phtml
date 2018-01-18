@@ -1,15 +1,43 @@
-<?php
+<?php require'header.php';
+if(count($_POST) > 0) {
+    include_once"inc/sql.php";
+    include_once 'inc/functions.php';
 
- require'header.php'; ?>
+    $c = trimDatasPost($_POST);
 
 
+    if(is_array($c)){
+
+        $editUser = $pdo->prepare('INSERT INTO `table_user` VALUES(null, ?,?,?,?,?,?,?,?, SHA1(?))');
+        $b_result = $editUser->execute(array_values($c));
+        header('location:index.php');
+
+    }
+    else{
+        $error = "a refaire";
+    }
+
+}
 
 
-<main>
+?>
+
+    <nav class="user-interface">
+        <ul class="link-list">
+            <li>
+                <a class="button button-primary" href="user.phtml">Créer un compte</a>
+            </li>
+            <li class="layout-right">
+                <a class="button button-primary" href="login.phtml">Connexion</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
 
     <h2><i class="fa fa-user"></i> Création d'un compte client</h2>
 
-    <form class="generic-form" method="POST">
+    <form class="generic-form" method="POST" >
 
 
 
@@ -36,7 +64,7 @@
 
                     <li>
                         <label class="textarea" for="adress">Adresse :</label>
-                        <textarea rows="3" id="adress" name="adress" value="<?= $_POST['adress']?? '' ?>" ></textarea>
+                        <textarea rows="3" id="adress" name="adress"><?= $_POST['adress']?? '' ?></textarea>
                     </li>
 
                     <li>
@@ -64,7 +92,7 @@
                 <ul>
                     <li>
                         <label for="mail">Email :</label>
-                        <input id="mail" name="mail" type="mail" data-required value="<?= $_POST['mail']?? '' ?>" >
+                        <input id="mail" name="mail" type="email" data-required value="<?= $_POST['mail']?? '' ?>" >
                     </li>
                     <li>
                         <label for="userPassword">Mot de passe :</label>
@@ -83,28 +111,8 @@
                     <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
                 </li>
             </ul>
-
-
     </form>
-
-
-    <?php
-    include_once"inc/sql.php";
-    include_once 'inc/functions.php';
-
-    $b = trimDatasPost($_POST);
-    $editUser = $pdo->prepare('INSERT INTO `table_user` (`lastName`, `firstName`, `birthdate`, `adress`, `city`, `CP`, `tel`, `mail`, `password`) VALUES(?,?,?,?,?,?,?,?, SHA1(?))');
-
-    $b_result = $editUser->execute(array_values($b));
-
-    header ('location:index.php');
-
-    ?>
-
-
-
-
-
+        <?= $error ?? '' ?>
 </main>
 
 <?php require 'footer.php'; ?>

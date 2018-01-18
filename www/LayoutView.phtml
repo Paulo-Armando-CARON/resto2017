@@ -2,7 +2,33 @@
 <?php require'header.php'; ?>
 
 
+<nav class="user-interface">
+    <ul class="link-list">
+        <li>
 
+          <?php
+          if(!isset($_SESSION['mail'])) {
+
+              echo '<li class="layout-right">';
+              echo '<a class="button button-primary" href="login.phtml">Connexion</a>';
+              echo '</li>';
+
+          }
+
+       else {
+
+           echo ' <li class="layout-right">';
+           echo ' <a class="button button-primary" href="logout.php">Deconnexion</a>';
+       echo ' </li>';
+         }
+       ?>
+
+        <li>
+            <a class="button button-primary" href="user.phtml">Créer un compte</a>
+        </li>
+
+    </ul>
+</nav>
 
     <main>
 

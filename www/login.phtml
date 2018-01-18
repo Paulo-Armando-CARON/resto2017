@@ -1,35 +1,81 @@
-<?php require'header.php'; ?>
+<?php require'header.php';
+
+?>
+
+
+
+
 
 <main>
 
     <h2><i class="fa fa-lock"></i>Se connecter avec un compte utilisateur</h2>
-    <form class="generic-form" method="POST">
+    <form class="generic-form" method="POST" >
     <fieldset>
         <legend>Informations d'authentification</legend>
         <ul>
             <li>
                 <label for="mail">Email :</label>
-                <input id="mail" name="mail" type="mail" data-required value="<?= $_POST['mail']?? '' ?>" >
+                <input id="mail" name="mail" type="mail" data-required >
             </li>
             <li>
                 <label for="userPassword">Mot de passe :</label>
-                <input id="userPassword" name="password" type="password" data-required value="<?= $_POST['password']?? '' ?>">
+                <input id="userPassword" name="password" type="password" data-required>
             </li>
         </ul>
 
 
 
     </fieldset>
-    <ul>
-
-        <li>
-
-            <input  class="button button-primary" type="submit" value="Créer le compte">
-            <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <input class="button button-primary" type="submit" value="Connexion">
+                <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
+            </li>
+        </ul>
 
     </form>
+
+    <?php
+
+    include_once"inc/sql.php";
+    include_once 'inc/functions.php';
+
+    if(count($_POST) > 0) {
+
+        $a = trimDatasPost($_POST);
+
+        $req2 = $pdo->prepare('SELECT * FROM table_user WHERE mail = ?  AND password = SHA1(?)');
+
+        $req2->execute(array_values($a));
+
+        $resultat = $req2->fetch();
+
+        if(!$resultat){
+
+            echo "bad";
+
+
+        }
+
+        else {
+            $_SESSION['id_user'] = $resultat['id_user'];
+            $_SESSION['mail'] = $resultat['mail'];
+            $_SESSION['lastName'] = $resultat['lastName'];
+            $_SESSION['firstName'] = $resultat['firstName'];
+            echo "bon";
+
+            header('location: index.php');
+        }
+
+
+
+
+    }
+
+    ?>
+
+
+
 
 
 </main>
