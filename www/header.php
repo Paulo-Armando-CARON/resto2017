@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,3 +35,4 @@
         </a>
     </h1>
 </header>
+

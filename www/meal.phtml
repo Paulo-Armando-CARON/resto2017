@@ -2,20 +2,11 @@
 
 
 
-<nav class="user-interface">
-    <ul class="link-list">
-        <li>
-            <a class="button button-primary" href="/resto/index.php/user">Créer un compte</a>
-        </li>
-        <li class="layout-right">
-            <a class="button button-primary" href="/resto/index.php/user/login">Connexion</a>
-        </li>
-    </ul>
-</nav>
 
 
 <main>
-    <form class="generic-form" method="POST" action="meal.php" enctype="multipart/form-data">
+
+    <form class="generic-form" method="POST"  enctype="multipart/form-data">
 
     <h2>Ajout d'un produit alimentaire au catalogue</h2>
     <fieldset>
@@ -23,14 +14,14 @@
         <ul>
             <li>
                 <label for="title_product">Name</label>
-                <input type="text"  name="title_product" id="title_product" >
+                <input type="text" value="<?= $_POST['title_product'] ?? '' ?>" name="title_product" id="title_product" >
             </li>
             <li>
                 <label for="description">Description</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description"  name="description" value="<?= $_POST['description'] ?? '' ?>" ></textarea>
             <li>
                 <label for="photo">Photo</label>
-                <input id="photo" name="photo" type="file">
+                <input id="photo" value="<?= $_POST['extension'] ?? '' ?>" name="photo" type="file">
             </li>
 
             <li><i class="fa fa-warning"></i> Merci de renommer le fichier de la photo avec le nom de l'aliment <strong>avant</strong> de l'envoyer</li>
@@ -45,16 +36,16 @@
         <ul>
             <li>
                 <label for="quantity">Stock initial:</label>
-                <input type="text" name="quantity" id="quantity" class="quantity" maxlength="3" data-name="Stock initial" data-type="positive-integer" data-required >
+                <input type="text" value="<?= $_POST['quantity'] ?? '' ?>" name="quantity" id="quantity" class="quantity" maxlength="3" data-name="Stock initial" data-type="positive-integer" data-required >
             </li>
             <li>
                 <label for="price_ht">Prix d'achat:</label>
-                <input type="text" name="price_ht" id="price_ht" class="money" maxlength="5" data-name="Prix d'achat" data-type="positive-integer" data-required >
+                <input type="text" value="<?= $_POST['price_ht'] ?? '' ?>" name="price_ht" id="price_ht" class="money" maxlength="5" data-name="Prix d'achat" data-type="positive-integer" data-required >
                 <label for="buyPrice" class="no-width" >€</label>
             </li>
             <li>
                 <label for="price_ttc">Prix de vente:</label>
-                <input type="text" name="price_ttc" id="price_ttc" class="money" maxlength="5" data-name="Prix de vente" data-type="positive-integer" data-required >
+                <input type="text"  value="<?= $_POST['price_ttc'] ?? '' ?>" name="price_ttc" id="price_ttc" class="money" maxlength="5" data-name="Prix de vente" data-type="positive-integer" data-required >
                 <label for="salePrice" class="no-width" >€</label>
             </li>
         </ul>
@@ -71,24 +62,56 @@
         </ul>
     </form>
 
+    <?php
 
-    </main>
+    if(count($_POST) > 0){
+        $codeErrorUpload = ['UPLOAD_ERR_OK', ' UPLOAD_ERR_INI_SIZE', ' UPLOAD_ERR_FORM_SIZE', 'UPLOAD_ERR_PARTIAL', 'UPLOAD_ERR_NO_FILE',
+
+            'UPLOAD_ERR_NO_TMP_DIR', 'UPLOAD_ERR_CANT_WRITE', 'UPLOAD_ERR_EXTENSION '];
+        if ($_FILES['photo']['error'] == UPLOAD_ERR_OK) {
+            //var_dump(mime_content_type($_FILES['photo']['tmp_name']));
+            if(stripos(mime_content_type($_FILES['photo']['tmp_name']), 'image') !== false){
+                //possible de mettre  if(is_int... à la place de !==
+                //mine_content_type, permet de vérifier le fond du dossier pour voir s'il s'agit d'une image
+
+                include_once"inc/sql.php";
+                include_once 'inc/functions.php';
+                // Ajout d'un produit.
+                $a = trimDatasPost($_POST);
+
+                if(is_array($a)) {
+                    $addProduct = $pdo->prepare('INSERT INTO `table_product` (`title_product`,`description`,`quantity`,`price_ht`,`price_ttc`,`extension`) VALUES (?,?,?,?,?,?)');
+                    $ext = pathinfo($_FILES['photo']['name'])['extension'];
+                    $a [] = $ext;
+                    $result = $addProduct->execute($a);
+                    if ($result) {
+                        $pdo->lastInsertId();
 
 
+                        if (move_uploaded_file($_FILES['photo']['tmp_name'], 'images/manger/' . $pdo->lastInsertId() . '.' . $ext)) {
+                            $errorMsg = 'ok';
 
+                        } else $errorMsg = 'erreur move_uploaded_file';
 
+                        if($result){
 
+                        }
 
+                        //retour à la page de formulaire
+                        //header('Location: add_product.phtml');
 
+                    } else $errorMsg = 'error query';
+                }  else  $errorMsg = 'Tous les champs sont obligatoires';
 
+                }else $errorMsg = 'not image';
 
+        } else $errorMsg = $codeErrorUpload [$_FILES['photo']['error']];
+         header('location:index.php');
+       // var_dump($errorMsg);
 
+    }
 
-
-
-
-
-
-
-
+    // mieux que mettre dans dossier meal.php - j'ai un message d'erreur
+    ?>
+</main>
 <?php require 'footer.php'; ?>

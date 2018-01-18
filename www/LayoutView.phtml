@@ -2,17 +2,40 @@
 <?php require'header.php'; ?>
 
 
-    <!-- Interface utilisateur -->
-    <nav class="user-interface">
-        <ul class="link-list">
-            <li>
-                <a class="button button-primary" href="/resto/index.php/user">Créer un compte</a>
-            </li>
-            <li class="layout-right">
-                <a class="button button-primary" href="/resto/index.php/user/login">Connexion</a>
-            </li>
-        </ul>
-    </nav>
+<nav class="user-interface">
+    <ul class="link-list">
+        <li>
+
+          <?php
+          if(!isset($_SESSION['mail'])) {
+
+              echo '<li class="layout-right">';
+              echo '<a class="button button-primary" href="login.phtml">Connexion</a>';
+              echo '</li>';
+
+              echo '<li>';
+              echo '<a class="button button-primary" href="user.phtml">Créer un compte</a>';
+              echo '</li>';
+
+
+          }
+
+       else {
+           echo '<li>';
+                   echo ' <a class="button button-primary" href="/resto/index.php/booking">Réserver</a>';
+                   echo ' <a class="button button-primary" href="/resto/index.php/order">Commander</a>';
+            echo ' </li>';
+           echo ' <li class="layout-right">';
+           echo '<p class="welcome">Bonjour <strong>'.$_SESSION['lastName'].'</strong> !</p>';
+           echo ' <a class="button button-primary" href="logout.php">Deconnexion</a>';
+       echo ' </li>';
+         }
+       ?>
+
+
+
+    </ul>
+</nav>
 
     <main>
 
@@ -27,7 +50,7 @@
             <caption>Carte du restaurant</caption>
             <tbody>
             <tr>
-                <td><img src=""> </td>
+                <td><img src="images/manger/<?=$articles['id_product'],'.', $articles['extension']?>"> </td>
                 <td>
                     <strong><?= $articles['title_product']?> </strong>
                     <p><?= $articles['description']?></p>
