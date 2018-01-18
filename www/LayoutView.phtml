@@ -13,19 +13,26 @@
               echo '<a class="button button-primary" href="login.phtml">Connexion</a>';
               echo '</li>';
 
+              echo '<li>';
+              echo '<a class="button button-primary" href="user.phtml">Créer un compte</a>';
+              echo '</li>';
+
+
           }
 
        else {
-
+           echo '<li>';
+                   echo ' <a class="button button-primary" href="/resto/index.php/booking">Réserver</a>';
+                   echo ' <a class="button button-primary" href="/resto/index.php/order">Commander</a>';
+            echo ' </li>';
            echo ' <li class="layout-right">';
+           echo '<p class="welcome">Bonjour <strong>'.$_SESSION['lastName'].'</strong> !</p>';
            echo ' <a class="button button-primary" href="logout.php">Deconnexion</a>';
        echo ' </li>';
          }
        ?>
 
-        <li>
-            <a class="button button-primary" href="user.phtml">Créer un compte</a>
-        </li>
+
 
     </ul>
 </nav>
