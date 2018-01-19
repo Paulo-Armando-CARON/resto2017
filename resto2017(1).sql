@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 16 Janvier 2018 à 16:39
+-- Généré le :  Ven 19 Janvier 2018 à 16:41
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -85,7 +85,9 @@ CREATE TABLE `table_product` (
 
 INSERT INTO `table_product` (`id_product`, `title_product`, `description`, `price_ht`, `price_ttc`, `quantity`, `extension`) VALUES
 (39, 'coca', 'yuiyui', 1, 3, 2, 'jpg'),
-(41, 'cocas', '2', 1, 3, 2, 'jpg');
+(41, 'cocas', '2', 1, 3, 2, 'jpg'),
+(42, 'eeee', 'eeee', 12, 123, 1, 'jpg'),
+(43, 'hgfh', 'gfhgf', 4, 44, 4, 'jpg');
 
 -- --------------------------------------------------------
 
@@ -94,11 +96,20 @@ INSERT INTO `table_product` (`id_product`, `title_product`, `description`, `pric
 --
 
 CREATE TABLE `table_resa` (
+  `id_user` int(11) UNSIGNED NOT NULL,
   `id_resa` int(10) UNSIGNED NOT NULL,
-  `resa_date` int(11) NOT NULL,
   `number_resa` int(11) NOT NULL,
-  `id_user` int(11) UNSIGNED NOT NULL
+  `resa_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `table_resa`
+--
+
+INSERT INTO `table_resa` (`id_user`, `id_resa`, `number_resa`, `resa_date`) VALUES
+(34, 1, 1, '2018-01-03 12:03:00'),
+(34, 2, 1, '2018-01-03 12:03:00'),
+(34, 3, 1, '2018-01-10 15:00:00');
 
 -- --------------------------------------------------------
 
@@ -108,8 +119,8 @@ CREATE TABLE `table_resa` (
 
 CREATE TABLE `table_user` (
   `id_user` int(10) UNSIGNED NOT NULL,
-  `name` char(50) NOT NULL,
-  `lastname` char(50) NOT NULL,
+  `lastName` char(50) NOT NULL,
+  `firstName` char(50) NOT NULL,
   `birthdate` date NOT NULL,
   `adress` char(50) NOT NULL,
   `city` char(50) NOT NULL,
@@ -118,6 +129,14 @@ CREATE TABLE `table_user` (
   `mail` char(50) NOT NULL,
   `password` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `table_user`
+--
+
+INSERT INTO `table_user` (`id_user`, `lastName`, `firstName`, `birthdate`, `adress`, `city`, `CP`, `tel`, `mail`, `password`) VALUES
+(33, 'king', 'd', '2018-01-04', 'dd', 'dd', 56456, 487987997, 'king@gmail.com', '11e3e073d82b5236e1bdbcfcfdafa9ff5c5cb08a'),
+(34, 'prince', 'gfdgdfg', '2018-01-02', 'dgdfg', 'dfgdfgdfg', 45454, 45454545, 'prince@gmail.com', '3e94aca6d758be926743216c882234e7c388f305');
 
 --
 -- Index pour les tables exportées
@@ -183,17 +202,17 @@ ALTER TABLE `table_order`
 -- AUTO_INCREMENT pour la table `table_product`
 --
 ALTER TABLE `table_product`
-  MODIFY `id_product` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_product` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT pour la table `table_resa`
 --
 ALTER TABLE `table_resa`
-  MODIFY `id_resa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `table_user`
 --
 ALTER TABLE `table_user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- Contraintes pour les tables exportées
 --

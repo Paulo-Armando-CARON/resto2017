@@ -1,0 +1,98 @@
+<?php require ('header.php');?>
+
+
+<nav class="user-interface">
+    <ul class="link-list">
+        <li>
+            <a class="button button-primary" href="booking.phtml">Réserver</a>
+            <a class="button button-primary" href="order.phtml">Commander</a>
+        </li>
+        <li class="layout-right">
+            <p class="welcome">Bonjour <strong>bb aa</strong> !</p>
+            <a class="button button-primary" href="logout.php">Déconnexion</a>
+        </li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Passer une commande</h2>
+    <form data-order-step="run" id="order-form" class="generic-form hidden">
+        <fieldset>
+            <legend>Ajouter un article</legend>
+            <ul>
+                <li>
+                    <label for="">Nom: </label>
+                    <?php
+// foreach ?>
+                    <select id="" name="">
+                        <option value="<?php
+                        // id ?>"></option>
+                    </select>
+
+                    <article  id="meal-details" class="meal-details no-left-label>
+                        <img src="" alt="Photo du produit">
+                        <p></p>
+                        <span>Prix : <strong> </strong></span>
+
+                    </article>
+                </li>
+                <li>
+                    <label for="">Quantité: </label>
+                    <input id="" name="" class="quantity" type="text" maxlength="2"  data-name="Quantité" data-type="positive-integer" data-required>
+                </li>
+
+            </ul>
+
+        </fieldset>
+        <fieldset>
+            <legend>Récapitulatif de la commande</legend>
+            <legend>Récapitulatif de la commande</legend>
+            <section id=""></section>
+
+
+        </fieldset>
+        <ul>
+            <li>
+                <input class="button button-primary" type="submit" value="Valider la commande">
+                <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
+            </li>
+        </ul>
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+<?php require ('footer.php');?>
+
+
+
+
+
+
+
+
+

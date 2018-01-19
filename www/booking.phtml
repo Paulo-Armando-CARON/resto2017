@@ -1,12 +1,15 @@
+
+<?php require('header.php') ?>
+
 <nav class="user-interface">
     <ul class="link-list">
         <li>
-            <a class="button button-primary" href="/resto/index.php/booking">Réserver</a>
-            <a class="button button-primary" href="/resto/index.php/order">Commander</a>
+            <a class="button button-primary" href="booking.phtml">Réserver</a>
+            <a class="button button-primary" href="order.phtml">Commander</a>
         </li>
         <li class="layout-right">
             <p class="welcome">Bonjour <strong>bb aa</strong> !</p>
-            <a class="button button-primary" href="/resto/index.php/user/logout">Déconnexion</a>
+            <a class="button button-primary" href="logout.php">Déconnexion</a>
         </li>
     </ul>
 </nav>
@@ -15,30 +18,72 @@
 
     <h2><i class="fa fa-cutlery"></i> Réservation d'une table</h2>
 
-    <form>
+    <form class="generic-form" method="POST">
     <fieldset>
-        <legend>Réservation d'une table</legend>
+        <legend>Informations</legend>
 
         <ul>
             <li>
-                <label>Date de réservation</label>
-                <select>
+                <label for="resa_date">Date de réservation</label>
 
-                    <option value></option>
-                </select>
+                <input id="resa_date" name="resa_date" type="date" >
             </li>
             <li>
-                <label>Nombre de couverts</label>
-                <select>
 
-                    <option value></option>
+                <label for="resa_time">Heure de reservation (heures d'ouverture entre 12:00 et 18:00) : </label>
+                <input id="resa_time" type="time" name="resa_time"
+                       min="12:00" max="18:00"
+                       pattern="[0-9]{2}:[0-9]{2}" >
+            </li>
+            <li>
+                <label for="number_resa">Nombre de couverts</label>
+                <select id="number_resa" name="number_resa">
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5</option>
+                    <option value ="6">6</option>
+                    <option value ="7">7</option>
+                    <option value ="8">8</option>
                 </select>
             </li>
-
         </ul>
 
-
     </fieldset>
+        <ul>
+            <li>
+                <input class="button button-primary" type="submit" value="Réserver">
+                <a class="button button-cancel small" href="/resto/index.php">Annuler</a>
+            </li>
+        </ul>
+
     </form>
 
+
+    <?php
+
+    if(count($_POST) > 0) {
+
+        include "inc/sql.php";
+        //include_once 'inc/functions.php';
+        //$d = trimDatasPost($_POST);
+
+       // if (is_array($d)) {
+
+            $addResa = $pdo->prepare('INSERT INTO `table_resa`(`id_user`,`resa_date`,`number_resa`) VALUES( ?,?,?)');
+            $results = $addResa->execute([$_SESSION['id_user'], $_POST['resa_date'].' '.$_POST['resa_time'], $_POST['number_resa']]);
+
+       // else {
+          //  echo "error";
+       // }
+
+    }
+    else{
+        echo "error";
+    }
+    ?>
+
 </main>
+
+<?php require('footer.php') ?>
