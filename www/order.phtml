@@ -1,4 +1,6 @@
-<?php require ('header.php');?>
+<?php require ('header.php');
+include_once 'inc/sql.php';
+?>
 
 
 <nav class="user-interface">
@@ -14,41 +16,123 @@
     </ul>
 </nav>
 
+
+
 <main>
+
+
+
     <h2>Passer une commande</h2>
-    <form data-order-step="run" id="order-form" class="generic-form hidden">
+    <form data-order-step="run" id="order-form" class="generic-form " method="get">
         <fieldset>
-            <legend>Ajouter un article</legend>
-            <ul>
-                <li>
+            <legend id="meal" name="meal"  >Ajouter un article</legend>
+
+
+
+
                     <label for="">Nom: </label>
                     <?php
-// foreach ?>
-                    <select id="" name="">
-                        <option value="<?php
-                        // id ?>"></option>
-                    </select>
+                    $carte=$pdo->query('SELECT * FROM table_product');
 
-                    <article  id="meal-details" class="meal-details no-left-label>
-                        <img src="" alt="Photo du produit">
-                        <p></p>
-                        <span>Prix : <strong> </strong></span>
+                    $products=$carte->fetchAll();
+                   // var_dump($products);
+
+
+                 echo  '<select onchange="fetchOrder(this.value);" id="">';
+                    foreach($products as $k => $product) {
+                       if ($k === 0) $p = $product;
+
+                        echo '<option value="' . $product['id_product'] . '">' . $product['title_product'] . '</option>';
+                    } ?>
+                   </select>
+                    <article  id="meal-details" class="meal-details no-left-label" >
+
+                    <script>
+
+                        function fetchOrder(id_product){
+
+                            fetch('fetchOrder.php?idprod='+id_product).then(r => r.json()).then(r => {
+
+                                // let results = '';
+
+                                 console.log(r);
+                                //console.log(r.id_product);
+                                localStorage.setItem('temporary_selected_product', JSON.stringify(r));
+                            let html="";
+                            html += `<img src="images/manger/${r.id_product}.${r.extension}">`
+                            html += `<p>${r.description}</p>`
+                            html += `<p>${r.price_ttc}€</p>`
+
+                            //console.log(html)
+
+                            document.querySelector('#meal-details').innerHTML = html;
+
+
+                        }).catch(e => console.warn(e)); // gestion de potentielles erreurs
+
+                        }
+                        fetchOrder(<?= $products[0]['id_product']  ?>);
+                        function addProduct(event) {
+                            event.preventDefault();
+                            // preventDefault, empeche rafraichissement de la page avec bouton submit
+                            let quantite = localStorage.getItem('temporary_selected_product'));
+                            console.log(document.querySelector('#quantity').value);
+
+
+
+
+
+
+                        }
+
+                    </script>
+
 
                     </article>
-                </li>
-                <li>
-                    <label for="">Quantité: </label>
-                    <input id="" name="" class="quantity" type="text" maxlength="2"  data-name="Quantité" data-type="positive-integer" data-required>
-                </li>
 
-            </ul>
+
+
+                    <label for="">Quantité: </label>
+                    <input id="quantity" name="" class="quantity" type="text" maxlength="2" min="1" value="1" data-name="Quantité" data-type="positive-integer" data-required>
+
+                <ul>
+                    <li>
+                        <button class="button button-primary no-left-label" onclick="addProduct(event);">Ajouter</button>
+                    </li>
+                </ul>
+
+
+
+
 
         </fieldset>
         <fieldset>
             <legend>Récapitulatif de la commande</legend>
-            <legend>Récapitulatif de la commande</legend>
-            <section id=""></section>
 
+            <section id="order-summary">
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                                <th class="number">Quantité</th>
+                                <th>Produit</th>
+                                <th class="number">Prix unitaire</th>
+                                <th class="number">Prix Total</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr>
+                                <td class="number"></td>
+                                <td><strong></strong></td>
+                                <td class="number"></td>
+                                <td class="number"></td>
+                            </tr>
+
+                        </tbody>
+
+                </table>
+
+
+            </section>
 
         </fieldset>
         <ul>

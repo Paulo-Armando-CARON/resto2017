@@ -21,9 +21,10 @@
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <!-- JavaScript de l'application -->
+    <!-- JavaScript de l'application
     <script src="/js/utilities.js"></script>
     <script src="/js/classes/FormValidator.class.js"></script>
+    -->
 </head>
 <body>
 
